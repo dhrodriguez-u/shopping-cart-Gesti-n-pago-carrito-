@@ -11,6 +11,7 @@ import isi.shoppingCart.usecases.ports.CartRepository;
 import isi.shoppingCart.usecases.ports.CustomerRepository;
 import isi.shoppingCart.usecases.ports.ProductRepository;
 import isi.shoppingCart.usecases.ports.PurchaseRepository;
+import isi.shoppingCart.usecases.dto.PaymentResult;
 
 import java.util.List;
 
@@ -28,15 +29,28 @@ public class ConfirmarCompraUseCase {
         this.purchaseRepository = purchaseRepository;
         this.productRepository = productRepository;
     }
-//Integrante 3
-    private boolean processPayment(double total) {
+//Integrante 3 - Integrante 2
+private PaymentResult processPayment(double total) {
 
-        if (total <= 3000) {
-            return true;
-        }
+    if (total <= 3000) {
 
-        return false;
+        return new PaymentResult(
+                true,
+                "Transacción aprobada",
+                total,
+                "TXN-001"
+        );
     }
+
+    return new PaymentResult(
+            false,
+            "Fondos insuficientes",
+            total,
+            "TXN-002"
+    );
+}
+
+
 
     public OperationResult execute() {
         Cart cart = cartRepository.getCart();
@@ -69,10 +83,14 @@ public class ConfirmarCompraUseCase {
 
         double total = cart.getTotal();
 
-        boolean paymentApproved = processPayment(total);
+        PaymentResult paymentResult = processPayment(total);
 
-        if (!paymentApproved) {
-            return OperationResult.fail("El pago fue rechazado.");
+        if (!paymentResult.isApproved()) {
+
+            return OperationResult.fail(
+                    "Pago rechazado: "
+                            + paymentResult.getMessage()
+            );
         }
 
         Purchase purchase = new Purchase(purchaseRepository.getNextId(), customer);
@@ -90,6 +108,15 @@ public class ConfirmarCompraUseCase {
         purchaseRepository.save(purchase);
         cartRepository.save(new Cart());
 
-        return OperationResult.ok("Compra " + purchase.getId() + " confirmada para " + customer.getName() + ". Total: $ " + purchase.getTotal());
+        return OperationResult.ok(
+                "Pago aprobado. Compra "
+                        + purchase.getId()
+                        + " confirmada para "
+                        + customer.getName()
+                        + ". Total: $ "
+                        + purchase.getTotal()
+                        + ". Transacción: "
+                        + paymentResult.getTransactionId()
+        );
     }
 }

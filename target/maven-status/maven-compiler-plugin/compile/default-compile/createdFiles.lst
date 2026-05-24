@@ -13,6 +13,7 @@ isi\shoppingCart\entities\Customer.class
 isi\shoppingCart\usecases\ports\CartRepository.class
 isi\shoppingCart\usecases\ports\CustomerRepository.class
 isi\shoppingCart\entities\PurchaseItem.class
+isi\shoppingCart\usecases\dto\PaymentResult.class
 isi\shoppingCart\adapters\ui\Main.class
 isi\shoppingCart\usecases\ports\ProductRepository.class
 isi\shoppingCart\adapters\ui\MainView.class

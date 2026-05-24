@@ -2,6 +2,7 @@ C:\Users\herna_l1flzch\OneDrive\Escritorio\shopping-cart-Gesti-n-pago-carrito-\s
 C:\Users\herna_l1flzch\OneDrive\Escritorio\shopping-cart-Gesti-n-pago-carrito-\src\main\java\isi\shoppingCart\infrastructure\repositories\InMemoryCustomerRepository.java
 C:\Users\herna_l1flzch\OneDrive\Escritorio\shopping-cart-Gesti-n-pago-carrito-\src\main\java\isi\shoppingCart\usecases\ports\CartRepository.java
 C:\Users\herna_l1flzch\OneDrive\Escritorio\shopping-cart-Gesti-n-pago-carrito-\src\main\java\isi\shoppingCart\infrastructure\repositories\InMemoryProductRepository.java
+C:\Users\herna_l1flzch\OneDrive\Escritorio\shopping-cart-Gesti-n-pago-carrito-\src\main\java\isi\shoppingCart\usecases\dto\PaymentResult.java
 C:\Users\herna_l1flzch\OneDrive\Escritorio\shopping-cart-Gesti-n-pago-carrito-\src\main\java\isi\shoppingCart\entities\PurchaseItem.java
 C:\Users\herna_l1flzch\OneDrive\Escritorio\shopping-cart-Gesti-n-pago-carrito-\src\main\java\isi\shoppingCart\infrastructure\repositories\InMemoryCartRepository.java
 C:\Users\herna_l1flzch\OneDrive\Escritorio\shopping-cart-Gesti-n-pago-carrito-\src\main\java\isi\shoppingCart\adapters\ui\MainView.java
