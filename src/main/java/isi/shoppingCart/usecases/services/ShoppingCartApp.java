@@ -9,9 +9,11 @@ import isi.shoppingCart.infrastructure.repositories.InMemoryCartRepository;
 import isi.shoppingCart.infrastructure.repositories.InMemoryCustomerRepository;
 import isi.shoppingCart.infrastructure.repositories.InMemoryProductRepository;
 import isi.shoppingCart.infrastructure.repositories.InMemoryPurchaseRepository;
+import isi.shoppingCart.infrastructure.services.SimulatedPaymentService;
 import isi.shoppingCart.usecases.dto.OperationResult;
 import isi.shoppingCart.usecases.ports.CartRepository;
 import isi.shoppingCart.usecases.ports.CustomerRepository;
+import isi.shoppingCart.usecases.ports.PaymentGateway;
 import isi.shoppingCart.usecases.ports.ProductRepository;
 import isi.shoppingCart.usecases.ports.PurchaseRepository;
 import java.util.List;
@@ -30,8 +32,11 @@ public class ShoppingCartApp {
         cartRepository = new InMemoryCartRepository();
         customerRepository = new InMemoryCustomerRepository();
         purchaseRepository = new InMemoryPurchaseRepository();
+
+        PaymentGateway paymentGateway = new SimulatedPaymentService();
+
         agregarProductoAlCarritoUseCase = new AgregarProductoAlCarritoUseCase(productRepository, cartRepository);
-        confirmarCompraUseCase = new ConfirmarCompraUseCase(cartRepository, customerRepository, purchaseRepository, productRepository);
+        confirmarCompraUseCase = new ConfirmarCompraUseCase(cartRepository, customerRepository, purchaseRepository, productRepository, paymentGateway);
         increaseAvailableQuantityUseCase = new IncreaseAvailableQuantityUseCase(productRepository);
 
         cargarDatosIniciales();
